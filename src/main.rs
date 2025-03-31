@@ -24,7 +24,8 @@ fn tokenize(input: &str, dict: Arc<JapaneseDictionary>) -> Result<serde_json::Va
       "pos": *token.part_of_speech(),
       "normalized_form": *token.normalized_form(),
       "reading_form": *token.reading_form(),
-      "dictionary_form": *token.dictionary_form()
+      "dictionary_form": *token.dictionary_form(),
+      "is_oov": token.is_oov()
     })
   }).collect::<Vec<_>>()))
 }
