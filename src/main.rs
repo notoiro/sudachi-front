@@ -40,7 +40,15 @@ async fn handle_request(data: web::Json<TokenizerRequestBody>, dict: web::Data<A
 #[actix_web::main]
 async fn main() -> std::io::Result<()>{
   let cfg = Config::new(None, None, None).unwrap();
-  let dict = Arc::new(JapaneseDictionary::from_cfg(&cfg).unwrap());
+  let dict = Arc::new(match JapaneseDictionary::from_cfg(&cfg){
+    Ok(dic) => dic,
+    Err(_) => {
+      println!("sudachi dict load err");
+      panic!();
+    }
+  });
+
+  println!("sudachi front runnning on http:/127.0.0.1:2971 (Press Ctrl+C to quit)");
 
   HttpServer::new(move || {
     App::new()
