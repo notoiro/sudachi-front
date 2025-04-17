@@ -6,6 +6,7 @@ SudachiをHTTPのAPIで使えるようにする
 ## requirement
 - Rust
 - Git
+- Unzip
 
 ## commandline
 ```bash
